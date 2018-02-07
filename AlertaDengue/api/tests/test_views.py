@@ -19,6 +19,9 @@ import unittest
 
 
 class TestApiView(TestCase):
+    """
+
+    """
     def setUp(self):
         settings.DATA_DIR = os.path.dirname(__file__)
 
@@ -35,12 +38,17 @@ class TestApiView(TestCase):
         )
         self.assertEqual(response.status_code, 200)
 
+    def test_notification_reduced_csv_404_view(self):
+        """
+
+        :return:
+        """
         response = self.client.get(
             reverse('api:notif_reduced'), {
                 'chart_type': 'disease'
             }
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
         self.assertEqual(response.content, b'ERROR: STATE NOT FOUND')
 
     def test_alert_rj(self):
